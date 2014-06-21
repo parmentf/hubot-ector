@@ -6,6 +6,22 @@ A learning chatterbot script package for [Hubot](https://hubot.github.com/)
 
 [![NPM](https://nodei.co/npm/hubot-ector.png)](https://nodei.co/npm/hubot-ector/)
 
+## Installation
+
+After [having a hubot
+installed](https://github.com/github/hubot/tree/master/docs#getting-started-
+with-hubot), go into its directory. Then:
+
+```bash
+$ npm install --save hubot-ector
+```
+
+Then, add `"hubot-ector"` into the file `external-scripts.json`. The minimal one is:
+
+```json
+[ "hubot-ector" ]
+```
+
 ## Commands
 By default, any sentence that does not triggered another command will be replied by the hubot. Also, he will learn it, as a young child learning to speak would.
 
