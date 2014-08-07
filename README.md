@@ -28,7 +28,10 @@ By default, any sentence that does not triggered another command will be replied
 If you're annoyed by the hubot's verbiage, just use the `hubot shut up` command.
 In the other way, if you want him to talk again, just say `hubot speak` (as always, replace `hubot` with the name of the hubot).
 
+If you want that the hubot remember the conversations, use regularly the `save yourself` command.
+
 ## ChangeLog
 
+* 2014/08/07: 1.2.0: add "save yourself" command
 * 2014/06/21: 1.1.0: add "shut up" and "speak" commands
 * 2014/06/20: 1.0.0: First version
