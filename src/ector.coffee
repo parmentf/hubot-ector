@@ -25,7 +25,9 @@ FileConceptNetwork =  require('file-concept-network').FileConceptNetwork
 file_backup = "cn.json"
 ector = new Ector()
 ector.injectConceptNetwork FileConceptNetwork
-ector.cn.load file_backup
+ector.cn.load file_backup, (err) ->
+  if err
+    console.error 'Error while loading cn.json\n%s', err
 previousResponseNodes = null
 quiet = false
 speakReplies = 
@@ -43,8 +45,11 @@ module.exports = (robot) ->
     msg.reply msg.random speakReplies
 
   robot.respond /save yourself/i, (msg) ->
-    ector.cn.save file_backup
-    msg.reply "Thanks, My mind is safe now!"
+    ector.cn.save file_backup, (err) ->
+      if err
+        msg.reply "An error occurred while saving cn.json:", err
+      else
+        msg.reply "Thanks, My mind is safe now!"
 
   robot.catchAll (msg) ->
     if not quiet
