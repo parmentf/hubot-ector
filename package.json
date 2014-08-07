@@ -1,7 +1,7 @@
 {
   "name": "hubot-ector",
   "description": "Hubot's ECTOR script package (learning chatterbot)",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "François Parmentier <francois.parmentier@gmail.com>",
   "license": "MIT",
   "keywords": [
