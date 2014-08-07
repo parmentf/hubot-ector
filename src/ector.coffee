@@ -20,8 +20,12 @@
 
 util = require 'util'
 Ector = require 'ector'
+FileConceptNetwork =  require('file-concept-network').FileConceptNetwork
 
+file_backup = "cn.json"
 ector = new Ector()
+ector.injectConceptNetwork FileConceptNetwork
+ector.cn.load file_backup
 previousResponseNodes = null
 quiet = false
 speakReplies = 
@@ -37,6 +41,10 @@ module.exports = (robot) ->
   robot.respond /speak/i, (msg) ->
     quiet = false
     msg.reply msg.random speakReplies
+
+  robot.respond /save yourself/i, (msg) ->
+    ector.cn.save file_backup
+    msg.reply "Thanks, My mind is safe now!"
 
   robot.catchAll (msg) ->
     if not quiet

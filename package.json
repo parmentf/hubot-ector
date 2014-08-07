@@ -4,36 +4,30 @@
   "version": "1.1.0",
   "author": "François Parmentier <francois.parmentier@gmail.com>",
   "license": "MIT",
-
   "keywords": [
     "hubot",
     "hubot-scripts",
     "chatterbot"
   ],
-
   "repository": {
     "type": "git",
     "url": "git://github.com/parmentf/hubot-ector.git"
   },
-
   "bugs": {
     "url": "https://github.com/parmentf/hubot-ector/issues"
   },
-
   "dependencies": {
     "coffee-script": "~1.6",
-    "ector": "^0.1.6"
+    "ector": "^0.1.7",
+    "file-concept-network": "^0.1.2"
   },
-
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
     "sinon-chai": "*",
     "sinon": "*"
   },
-
   "main": "index.coffee",
-
   "scripts": {
     "test": "script/test"
   }
