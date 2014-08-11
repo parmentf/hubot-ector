@@ -60,3 +60,17 @@ module.exports = (robot) ->
       response = ector.generateResponse()
       previousResponseNodes = response.nodes
       msg.reply response.sentence
+
+  robot.router.get "/api\\?name=:name&message=:message", (req, res) ->
+    text =  "#{req.params.message}"
+    ector.setUser "#{req.params.name}"
+    ector.addEntry text
+    ector.linkNodesToLastSentence previousResponseNodes
+    response = ector.generateResponse()
+    previousResponseNodes = response.nodes
+    res.setHeader 'content-type', 'text/html; charset=utf-8'
+    res.setHeader 'Access-Control-Allow-Origin', "*"
+    res.setHeader 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE'
+    res.setHeader 'Access-Control-Allow-Headers', 'Content-Type'
+    pagina = response.sentence
+    res.end pagina
