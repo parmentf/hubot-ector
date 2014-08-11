@@ -40,8 +40,13 @@ module.exports = (robot) ->
   robot.respond /shut up/i, (msg) ->
     quiet = true
 
+  robot.respond /shut up/i, (msg) ->
+    quiet = true
+    msg.reply "Now I'm just listening."
+
   robot.respond /speak/i, (msg) ->
     quiet = false
+    just_listening= false
     msg.reply msg.random speakReplies
 
   robot.respond /save yourself/i, (msg) ->
@@ -57,6 +62,7 @@ module.exports = (robot) ->
       ector.setUser msg.message.user.name
       ector.addEntry text
       ector.linkNodesToLastSentence previousResponseNodes
-      response = ector.generateResponse()
-      previousResponseNodes = response.nodes
-      msg.reply response.sentence
+      if not just_listening
+        response = ector.generateResponse()
+        previousResponseNodes = response.nodes
+        msg.reply response.sentence
