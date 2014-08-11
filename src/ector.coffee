@@ -61,7 +61,7 @@ module.exports = (robot) ->
       previousResponseNodes = response.nodes
       msg.reply response.sentence
 
-  robot.router.get "/api\?name=:name&message=:message", (req, res) ->
+  robot.router.get "/api\\?name=:name&message=:message", (req, res) ->
     text =  "#{req.params.message}"
     ector.setUser "#{req.params.name}"
     ector.addEntry text
