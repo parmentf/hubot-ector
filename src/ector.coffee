@@ -61,8 +61,8 @@ module.exports = (robot) ->
       text = msg.message.text
       ector.setUser msg.message.user.name
       ector.addEntry text
-      ector.linkNodesToLastSentence previousResponseNodes
       if not just_listening
+        ector.linkNodesToLastSentence previousResponseNodes
         response = ector.generateResponse()
         previousResponseNodes = response.nodes
         msg.reply response.sentence
