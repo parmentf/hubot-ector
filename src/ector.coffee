@@ -11,6 +11,7 @@
 #   sentence not triggering any other command - Makes hubot reply (see "shut up" and "speak").
 #   hubot shut up - Make hubot quiet.
 #   hubot speak - Make hubot speak again.
+#   hubot just listen - Make the bot learn while quiet
 #
 # Notes:
 #   None
