@@ -2,7 +2,7 @@
 #   Make hubot learn and reply, when no other script is triggered.
 #
 # Dependencies:
-#   "ector": "^0.1.6"
+#   "ector": "^0.1.7"
 #
 # Configuration:
 #   None
