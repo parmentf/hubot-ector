@@ -41,7 +41,7 @@ module.exports = (robot) ->
     quiet = true
 
   robot.respond /just listen/i, (msg) ->
-    quiet = true
+    just_listening = true
     msg.reply "Now I'm just listening."
 
   robot.respond /speak/i, (msg) ->
