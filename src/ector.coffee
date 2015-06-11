@@ -26,7 +26,7 @@ rooms_string = process.env.HUBOT_ECTOR_ROOMS
 if rooms_string
   rooms = rooms_string.split ","
   for room in rooms
-    room = room.replace(/\s/g, '')
+    room = room.trim()
 else
   rooms = [ null ]
 
