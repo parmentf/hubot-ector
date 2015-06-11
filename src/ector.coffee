@@ -2,7 +2,7 @@
 #   Make hubot learn and reply, when no other script is triggered.
 #
 # Dependencies:
-#   "ector": "^0.1.7"
+#   "ector": "^0.1.6"
 #
 # Configuration:
 #   None
@@ -11,7 +11,6 @@
 #   sentence not triggering any other command - Makes hubot reply (see "shut up" and "speak").
 #   hubot shut up - Make hubot quiet.
 #   hubot speak - Make hubot speak again.
-#   hubot just listen - Make the bot learn while quiet
 #
 # Notes:
 #   None
@@ -22,6 +21,14 @@
 util = require 'util'
 Ector = require 'ector'
 FileConceptNetwork =  require('file-concept-network').FileConceptNetwork
+
+rooms_string = process.env.HUBOT_ECTOR_ROOMS
+if rooms_string
+  rooms = rooms_string.split ","
+  for room in rooms
+    room = room.trim()
+else
+  rooms = [ null ]
 
 file_backup = "cn.json"
 ector = new Ector()
@@ -41,13 +48,8 @@ module.exports = (robot) ->
   robot.respond /shut up/i, (msg) ->
     quiet = true
 
-  robot.respond /just listen/i, (msg) ->
-    just_listening = true
-    msg.reply "Now I'm just listening."
-
   robot.respond /speak/i, (msg) ->
     quiet = false
-    just_listening= false
     msg.reply msg.random speakReplies
 
   robot.respond /save yourself/i, (msg) ->
@@ -58,12 +60,15 @@ module.exports = (robot) ->
         msg.reply "Thanks, My mind is safe now!"
 
   robot.catchAll (msg) ->
-    if not quiet
-      text = msg.message.text
-      ector.setUser msg.message.user.name
-      ector.addEntry text
-      if not just_listening
-        ector.linkNodesToLastSentence previousResponseNodes
-        response = ector.generateResponse()
-        previousResponseNodes = response.nodes
-        msg.reply response.sentence
+    responded = false
+    for room in rooms
+      if ( room == msg.message.room || room == null || ( !msg.message.room && !responded ) )
+        if not quiet
+          text = msg.message.text
+          ector.setUser msg.message.user.name
+          ector.addEntry text
+          ector.linkNodesToLastSentence previousResponseNodes
+          response = ector.generateResponse()
+          previousResponseNodes = response.nodes
+          msg.reply response.sentence
+        responded = true
