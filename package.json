@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "coffee-script": "~1.6",
-    "ector": "^0.1.7",
+    "ector": "*",
     "file-concept-network": "^0.1.2"
   },
   "devDependencies": {
